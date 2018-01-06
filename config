@@ -11,6 +11,7 @@
 
 #autoStart
 #exec --no-startup-id xcompmgr &
+exec --no-startup-id xrandr --output DP1 --auto --output HDMI2 --auto --right-of DP1 &
 exec --no-startup-id fcitx &
 exec --no-startup-id compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible  &
 exec --no-startup-id nm-applet &
