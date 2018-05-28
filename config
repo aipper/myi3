@@ -45,6 +45,7 @@ bindsym $mod+p mode "$mode_launcher"
 
 mode "$mode_launcher"{
     bindsym $mod+c exec google-chrome-stable
+    bindsym $mod+g exec google-chrome-unstable
     bindsym $mod+e exec pcmanfm
     bindsym $mod+i exec idea
     bindsym $mod+q exec xfce4-screenshooter
@@ -62,6 +63,8 @@ new_float normal
 # 取消工作区边缘的边框
 hide_edge_borders both
 
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # kill focused window
 bindsym $mod1+F4 kill

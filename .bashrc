@@ -36,3 +36,7 @@ colors() {
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 export PATH=${PATH}:/home/ab/.ssh/usm
+export http_proxy=''
+export https_proxy=''
+export ftp_proxy=''
+export socks_proxy=''

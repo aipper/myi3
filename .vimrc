@@ -20,7 +20,7 @@ set confirm
 set mouse=a
 
 "tab缩进
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set expandtab
 set smarttab
@@ -58,6 +58,8 @@ set foldenable
 "
 "根据语法折叠
 set fdm=syntax
+" 不要swap文件
+set noswapfile
 
 "手动折叠
 "set fdm=manual
@@ -143,7 +145,9 @@ Plugin 'sjl/gundo.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'lilydjwg/fcitx.vim'
-Plugin 'valloric/youCompleteMe'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'w0rp/ale'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 " 你的所有插件需要在下面这行之前
 call vundle#end()            " 必须
@@ -162,3 +166,25 @@ filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和
 
 " vundle 环境设置
 " vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
+" python support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir=os.environ['VIRTUAL_ENV']
+    activate_this=os.path.join(project_base_dir,'bin/activate.this.py')
+    execfile(activate_this,dict(__file__=activate_this))
+EOF
+
+au BufNewFile,BufRead *.py
+            \ set tabstop=4
+            \ set softtabstop=4
+            \ set shiftwidth=4
+            \ set textwidth=79
+            \ set expandtab
+            \ set autoindent
+            \ set fileformat=unix
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
