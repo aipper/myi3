@@ -28,6 +28,15 @@ set smarttab
 "文件自动检测外部更改
 set autoread
 
+"代码补全"
+set completeopt=preview,menu
+
+"突出当前行"
+set cursorline
+
+"搜索忽略大小写"
+set ignorecase 
+
 "c文件自动缩进
 set cindent
 
@@ -149,13 +158,14 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'w0rp/ale'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'google/yapf'
-Plugin 'maralla/completor.vim'
+""Plugin 'maralla/completor.vim'
 Plugin 'davidhalter/jedi-vim'
 "python语法检测
 Plugin 'scrooloose/syntastic'
 "添加PEP8代码风格检查
 Plugin 'nvie/vim-flake8'
-
+"括号"
+Plugin 'jiangmiao/auto-pairs'
 
 " 你的所有插件需要在下面这行之前
 call vundle#end()            " 必须
@@ -184,10 +194,21 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this,dict(__file__=activate_this))
 EOF
 
-
-
-
 let maplocalleader = " " 
+" Ycm同时使用ctags"
+let g:ycm_collect_identifiers_from_tag_files=1
+" 第2个字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion=2
+" 语法关键字补全
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <localleader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" 离开插入模式关闭预览窗口
+au InsertLeave * if pumvisible() ==0 | pclose | endif
+"回车选中当前项
+inoremap <expr> <CR> pumvisible() ? "\<C-y>": "\<CR>"
+
+"python格式化"
 au FileType python nnoremap <localleader>= :0,$!yapf<CR>
 let g:formatter_yapf_style='pep8' 
 "python代码缩进PEP8风格
@@ -214,9 +235,32 @@ endfunc
 
 
 " 括号自动补全
-inoremap ( ()<LEFT>
-inoremap ' ''<LEFT>
-inoremap " ""<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
+"inoremap ( ()<LEFT>
+"inoremap ' ''<LEFT>
+"inoremap " ""<LEFT>
+"inoremap [ []<LEFT>
+"inoremap { {}<LEFT>
+"
+" python 执行
+map <F5> :call CompileRun()<CR>
+func! CompileRun()
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype =='cpp'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype =='sh'
+        :!time bash %
+    elseif &filetype=='python'
+        exec "!time python %"
+    elseif &filetype =='go'
+        exec '!time go run %'
+    endif
+endfunc
+
 
