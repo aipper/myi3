@@ -211,3 +211,12 @@ func SetTitle()
     normal o
     normal o
 endfunc
+
+
+" 括号自动补全
+inoremap ( ()<LEFT>
+inoremap ' ''<LEFT>
+inoremap " ""<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT>
+
