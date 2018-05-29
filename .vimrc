@@ -65,7 +65,7 @@ set noswapfile
 "set fdm=manual
 
 "设置键盘映射，通过空格设置折叠
-nnoremap <space> @=((foldclosed(line('.')<0)?'zc':'zo'))<CR>
+"nnoremap <space> @=((foldclosed(line('.')<0)?'zc':'zo'))<CR>
 """"""""""""""""""""""""""""""""""""""""""""""
 "不要闪烁
 set novisualbell
@@ -148,6 +148,14 @@ Plugin 'lilydjwg/fcitx.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'w0rp/ale'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'google/yapf'
+Plugin 'maralla/completor.vim'
+Plugin 'davidhalter/jedi-vim'
+"python语法检测
+Plugin 'scrooloose/syntastic'
+"添加PEP8代码风格检查
+Plugin 'nvie/vim-flake8'
+
 
 " 你的所有插件需要在下面这行之前
 call vundle#end()            " 必须
@@ -176,15 +184,30 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this,dict(__file__=activate_this))
 EOF
 
-au BufNewFile,BufRead *.py
-            \ set tabstop=4
-            \ set softtabstop=4
-            \ set shiftwidth=4
-            \ set textwidth=79
-            \ set expandtab
-            \ set autoindent
-            \ set fileformat=unix
 
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+
+let maplocalleader = " " 
+au FileType python nnoremap <localleader>= :0,$!yapf<CR>
+let g:formatter_yapf_style='pep8' 
+"python代码缩进PEP8风格
+au BufNewFile,BufRead *.py,*.pyw set tabstop=4 
+au BufNewFile,BufRead *.py,*.pyw set softtabstop=4 
+au BufNewFile,BufRead *.py,*.pyw set shiftwidth=4 
+au BufNewFile,BufRead *.py,*.pyw set textwidth=79 
+au BufNewFile,BufRead *.py,*.pyw set expandtab 
+au BufNewFile,BufRead *.py,*.pyw set autoindent 
+au BufNewFile,BufRead *.py,*.pyw set fileformat=unix
+
+let python_highlight_all=1
+
+" 创建文件头 
+autocmd BufNewFile *.py exec ":call SetTitle()"
+
+func SetTitle()
+    call setline(1,"#!/usr/bin/env python")
+    call setline(2,"#_*_ coding: utf-8 _*_")
+    normal G
+    normal o
+    normal o
+endfunc
