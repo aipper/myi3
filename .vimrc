@@ -166,6 +166,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 "括号"
 Plugin 'jiangmiao/auto-pairs'
+Plugin ''
 
 " 你的所有插件需要在下面这行之前
 call vundle#end()            " 必须
