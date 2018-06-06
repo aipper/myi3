@@ -101,75 +101,127 @@ set fillchars=stlnc:/
 set nocompatible              " 去除VI一致性,必须要添加
 filetype off                  " 必须要添加
 
+
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置包括vundle和初始化相关的runtime path
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" 另一种选择, 指定一个vundle安装插件的路径
-"call vundle#begin('~/some/path/here')
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"" 另一种选择, 指定一个vundle安装插件的路径
+""call vundle#begin('~/some/path/here')
+"
+"" 让vundle管理插件版本,必须
+"Plugin 'VundleVim/Vundle.vim'
+"
+"" 以下范例用来支持不同格式的插件安装.
+"" 请将安装插件的命令放在vundle#begin和vundle#end之间.
+"" Github上的插件
+"" 格式为 Plugin '用户名/插件仓库名'
+"Plugin 'tpope/vim-fugitive'
+"" 来自 http://vim-scripts.org/vim/scripts.html 的插件
+"" Plugin '插件名称' 实际上是 Plugin 'vim-scripts/插件仓库名' 只是此处的用户名可以省略
+"Plugin 'L9'
+"" 由Git支持但不再github上的插件仓库 Plugin 'git clone 后面的地址'
+"Plugin 'git://git.wincent.com/command-t.git'
+"" 本地的Git仓库(例如自己的插件) Plugin 'file:///+本地插件仓库绝对路径'
+"" Plugin 'file:///home/gmarik/path/to/plugin'
+"" 插件在仓库的子目录中.
+"" 正确指定路径用以设置runtimepath. 以下范例插件在sparkup/vim目录下
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"" 安装L9，如果已经安装过这个插件，可利用以下格式避免命名冲突
+"" Plugin 'ascenator/L9', {'name': 'newL9'}
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+"Plugin 'vim-scripts/phd'
+"Plugin 'Lokaltog/vim-powerline'
+"Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'derekwyatt/vim-fswitch'
+"Plugin 'kshenoy/vim-signature'
+"Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/indexer.tar.gz'
+"Plugin 'vim-scripts/DfrankUtil'
+"Plugin 'vim-scripts/vimprj'
+"Plugin 'dyng/ctrlsf.vim'
+"Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'vim-scripts/DrawIt'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'derekwyatt/vim-protodef'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'gcmt/wildfire.vim'
+"Plugin 'sjl/gundo.vim'
+"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'suan/vim-instant-markdown'
+"Plugin 'lilydjwg/fcitx.vim'
+"Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'w0rp/ale'
+"Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'google/yapf'
+"""Plugin 'maralla/completor.vim'
+"Plugin 'davidhalter/jedi-vim'
+""python语法检测
+"Plugin 'scrooloose/syntastic'
+""添加PEP8代码风格检查
+"Plugin 'nvie/vim-flake8'
+""括号"
+"Plugin 'jiangmiao/auto-pairs'
+"" 你的所有插件需要在下面这行之前
+"call vundle#end()            " 必须
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" 让vundle管理插件版本,必须
-Plugin 'VundleVim/Vundle.vim'
 
-" 以下范例用来支持不同格式的插件安装.
-" 请将安装插件的命令放在vundle#begin和vundle#end之间.
-" Github上的插件
-" 格式为 Plugin '用户名/插件仓库名'
-Plugin 'tpope/vim-fugitive'
-" 来自 http://vim-scripts.org/vim/scripts.html 的插件
-" Plugin '插件名称' 实际上是 Plugin 'vim-scripts/插件仓库名' 只是此处的用户名可以省略
-Plugin 'L9'
-" 由Git支持但不再github上的插件仓库 Plugin 'git clone 后面的地址'
-Plugin 'git://git.wincent.com/command-t.git'
-" 本地的Git仓库(例如自己的插件) Plugin 'file:///+本地插件仓库绝对路径'
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" 插件在仓库的子目录中.
-" 正确指定路径用以设置runtimepath. 以下范例插件在sparkup/vim目录下
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" 安装L9，如果已经安装过这个插件，可利用以下格式避免命名冲突
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'vim-scripts/phd'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'kshenoy/vim-signature'
-Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/indexer.tar.gz'
-Plugin 'vim-scripts/DfrankUtil'
-Plugin 'vim-scripts/vimprj'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/DrawIt'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'derekwyatt/vim-protodef'
-Plugin 'scrooloose/nerdtree'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'gcmt/wildfire.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'lilydjwg/fcitx.vim'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'w0rp/ale'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'google/yapf'
-""Plugin 'maralla/completor.vim'
-Plugin 'davidhalter/jedi-vim'
-"python语法检测
-Plugin 'scrooloose/syntastic'
-"添加PEP8代码风格检查
-Plugin 'nvie/vim-flake8'
-"括号"
-Plugin 'jiangmiao/auto-pairs'
-Plugin ''
+"换用vim-plug
+call plug#begin('~/.vim/plugged')
 
-" 你的所有插件需要在下面这行之前
-call vundle#end()            " 必须
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/phd'
+Plug 'Lokaltog/vim-powerline'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'kshenoy/vim-signature'
+Plug 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/indexer.tar.gz'
+Plug 'vim-scripts/DfrankUtil'
+Plug 'vim-scripts/vimprj'
+Plug 'dyng/ctrlsf.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/DrawIt'
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
+Plug 'derekwyatt/vim-protodef'
+Plug 'scrooloose/nerdtree'
+Plug 'fholgado/minibufexpl.vim'
+Plug 'gcmt/wildfire.vim'
+Plug 'sjl/gundo.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'suan/vim-instant-markdown'
+Plug 'lilydjwg/fcitx.vim'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'w0rp/ale'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'google/yapf'
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'jiangmiao/auto-pairs'
+
+call plug#end()
+
+
+
 filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
 " 忽视插件改变缩进,可以使用以下替代:
 "filetype plugin on
@@ -228,7 +280,7 @@ autocmd BufNewFile *.py exec ":call SetTitle()"
 
 func SetTitle()
     call setline(1,"#!/usr/bin/env python")
-    call setline(2,"#_*_ coding: utf-8 _*_")
+    call setline(2,"# _*_ coding: utf-8 _*_")
     normal G
     normal o
     normal o
