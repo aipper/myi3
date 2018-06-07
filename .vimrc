@@ -280,7 +280,7 @@ autocmd BufNewFile *.py exec ":call SetTitle()"
 
 func SetTitle()
     call setline(1,"#!/usr/bin/env python")
-    call setline(2,"# _*_ coding: utf-8 _*_")
+    call setline(2,"# -*- coding: utf-8 -*-")
     normal G
     normal o
     normal o
